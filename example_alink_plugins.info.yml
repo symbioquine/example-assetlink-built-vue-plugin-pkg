@@ -1,0 +1,7 @@
+name: A package with some plugins for farmOS Asset Link
+description: Provides Asset Link plugins that do awesome stuff
+type: module
+package: Example farmOS Asset Link Plugins
+core_version_requirement: ^9
+dependencies:
+  - farmos_asset_link
