@@ -1,0 +1,21 @@
+{
+  "name": "example-assetlink-plugin-pkg",
+  "version": "1.0.0",
+  "description": "Demonstrates a simple package structure with some Asset Link plugins",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack build",
+    "serve": "webpack serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@symbioquinegithub.com:symbioquine/example-assetlink-plugin-pkg.git"
+  },
+  "license": "GPLV3",
+  "devDependencies": {
+    "assetlink-plugin-dev-support": "^1.0.0-alpha1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.9.3"
+  }
+}
