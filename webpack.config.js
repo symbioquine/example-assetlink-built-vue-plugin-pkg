@@ -1,17 +1,42 @@
-const { GenerateDefaultPluginConfigYmlFilesPlugin, createDevServerConfig } = require('assetlink-plugin-dev-support');
+const {
+  assetLinkIncludedLibraries,
+  GenerateDefaultPluginConfigYmlFilesPlugin,
+  createDevServerConfig
+} = require('assetlink-plugin-dev-support');
 
 module.exports = {
-  // We have no entry since this package just contains uncompiled plugins
-  entry: {},
-  output: {
-    // Use the current directory to prevent a 'dist/' folder from being created there should be no output, otherwise
-    path: __dirname,
+  entry: {
+    // Add an entry here for each plugin in the `src` directory that needs building
+    'ExampleChartPage.alink.js': './src/ExampleChartPage.alink.js',
   },
+  output: {
+    // Output the built plugins in the current directory - alongside any unbuilt plugins
+    path: __dirname,
+    // Use just the entry name as our output plugin name
+    filename: '[name]',
+    // Make our built plugin code use module import/exports
+    library: { type: 'commonjs-module' },
+    // Required, but don't worry about it (For nerds: with the default `publicPath: "auto"` Webpack
+    // outputs code that doesn't work in our Asset Link browser environment - similar to this issue:
+    // https://github.com/angular-architects/module-federation-plugin/issues/96)
+    publicPath: '/',
+  },
+  // This can be changed to 'production' - see https://webpack.js.org/configuration/mode/
   mode: 'development',
+
+  // Output a module and don't try and bundle things like `vue` that are provided by Asset Link
+  experiments: {
+    outputModule: true,
+  },
+  externalsType: 'module',
+  externals: {
+    ...assetLinkIncludedLibraries,
+  },
+
   plugins: [
     new GenerateDefaultPluginConfigYmlFilesPlugin({
       pluginDir: __dirname,
-      drupalModuleName: 'example_alink_plugins',
+      drupalModuleName: 'example_built_alink_plugins',
     }),
   ],
   devServer: createDevServerConfig({
