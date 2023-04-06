@@ -1,3 +1,5 @@
+const { VueLoaderPlugin } = require("vue-loader");
+
 const {
   assetLinkIncludedLibraries,
   GenerateDefaultPluginConfigYmlFilesPlugin,
@@ -7,7 +9,8 @@ const {
 module.exports = {
   entry: {
     // Add an entry here for each plugin in the `src` directory that needs building
-    'ExampleChartPage.alink.js': './src/ExampleChartPage.alink.js',
+    'ExampleSimplePage.alink.js': './src/ExampleSimplePage.alink.vue',
+    'ExampleChartPage.alink.js': './src/ExampleChartPage.alink.vue',
   },
   output: {
     // Output the built plugins in the current directory - alongside any unbuilt plugins
@@ -33,7 +36,27 @@ module.exports = {
     ...assetLinkIncludedLibraries,
   },
 
+  module: {
+    rules: [
+      {
+        test: /\.vue$/i,
+        exclude: /(node_modules)/,
+        use: {
+          loader: "vue-loader",
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          { loader: "vue-style-loader" },
+          { loader: "css-loader" },
+        ],
+      },
+    ]
+  },
+
   plugins: [
+    new VueLoaderPlugin(),
     new GenerateDefaultPluginConfigYmlFilesPlugin({
       pluginDir: __dirname,
       drupalModuleName: 'example_built_alink_plugins',

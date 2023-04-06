@@ -1,7 +1,7 @@
 {
-  "name": "example-assetlink-built-plugin-pkg",
+  "name": "example-assetlink-built-vue-plugin-pkg",
   "version": "1.0.0",
-  "description": "Demonstrates a simple package structure with some built Asset Link plugins",
+  "description": "Demonstrates a simple package structure with some built Vue Asset Link plugins",
   "main": "index.js",
   "scripts": {
     "build": "webpack build",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@symbioquinegithub.com:symbioquine/example-assetlink-built-plugin-pkg.git"
+    "url": "git@symbioquinegithub.com:symbioquine/example-assetlink-built-vue-plugin-pkg.git"
   },
   "license": "GPLV3",
   "dependencies": {
@@ -17,7 +17,10 @@
     "vue-chartjs": "^5.2.0"
   },
   "devDependencies": {
-    "assetlink-plugin-dev-support": "^1.0.0-alpha1",
+    "assetlink-plugin-dev-support": "^1.0.0-alpha8",
+    "css-loader": "^6.7.3",
+    "vue-loader": "^17.0.1",
+    "vue-style-loader": "^4.1.3",
     "webpack": "^5.75.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.3"
